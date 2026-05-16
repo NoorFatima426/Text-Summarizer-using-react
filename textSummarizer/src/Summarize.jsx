@@ -5,13 +5,17 @@ import { jsPDF } from "jspdf";
 import { ArrowDown } from "lucide-react";
 function Summarize({ summaryText, loading, downloadError, handleDownload }) {
   let [msg, setMsg] = useState("");
-  const copiedData = () => {
-    if (summaryText.length != 0) {
-      navigator.clipboard.writeText(summaryText);
+  const copiedData = async () => {
+  if (summaryText.length !== 0) {
+    try {
+      await navigator.clipboard.writeText(summaryText); 
       setMsg("Copied");
       setTimeout(() => setMsg(""), 2000);
+    } catch (error) {
+      setMsg("Failed to copy!"); 
     }
-  };
+  }
+};
   if (loading) {
     return (
       <p className="font-bold text-center text-xl text-indigo-500 p-5">

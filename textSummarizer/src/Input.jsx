@@ -1,17 +1,8 @@
 import { Pencil } from "lucide-react";
 import { Sparkle } from "lucide-react";
-import { useState } from "react";
 import "./App.css";
 
-function Input({
-  getInput,
-  inputData,
-  selected,
-  setSelected,
-  summarizeInput,
-  loading,
-  errorMsg,
-}) {
+function Input({ getInput, inputData, selected, setSelected, summarizeInput, loading, errorMsg }) {
   let shortClass =
     selected === "short"
       ? "border-2 border-indigo-500 text-indigo-500"

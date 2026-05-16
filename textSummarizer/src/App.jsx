@@ -9,7 +9,7 @@ function App() {
   let [inputData, setInputData] = useState("");
   let [summaryText, setSummaryText] = useState("");
   let [selected, setSelected] = useState("short");
-  let [loading, isLoading] = useState(false);
+  let [loading, setisLoading] = useState(false);
   let [errorMsg, setErrorMsg] = useState("");
   let [downloadError, setDownloadError] = useState("");
   const getInput = (e) => {
@@ -56,7 +56,7 @@ function App() {
       }, 3000);
       return;
     }
-    isLoading(true);
+    setisLoading(true);
     let contentText;
     if (selected === "short") {
       contentText = `Summarize in EXACTLY 30 words or less. Do not exceed 30 words.Do not mention the word count in your response. text: ${inputData}`;
@@ -92,10 +92,20 @@ function App() {
       setSummaryText(content);
       setInputData("");
     } catch (error) {
-      setSummaryText("Error! 404");
+      console.error("API Error:", error);
+      setSummaryText("Something went wrong. Please try again");
     } finally {
-      isLoading(false);
+      setisLoading(false);
     }
+  }
+  const inputProps = {
+     getInput:getInput,
+            inputData:inputData,
+            selected:selected,
+            setSelected:setSelected,
+            summarizeInput:summarizeInput,
+            loading:loading,
+            errorMsg:errorMsg
   }
   return (
     <>
@@ -103,13 +113,7 @@ function App() {
         <Header />
         <div className="flex flex-wrap gap-10">
           <Input
-            getInput={getInput}
-            inputData={inputData}
-            selected={selected}
-            setSelected={setSelected}
-            summarizeInput={summarizeInput}
-            loading={loading}
-            errorMsg={errorMsg}
+           {...inputProps} //Prop Drilling
           />
           <Summarize
             summaryText={summaryText}
