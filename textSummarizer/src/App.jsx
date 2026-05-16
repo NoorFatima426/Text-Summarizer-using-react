@@ -6,12 +6,12 @@ import Summarize from "./Summarize";
 import { jsPDF } from "jspdf";
 
 function App() {
-  let [inputData, setInputData] = useState("");
-  let [summaryText, setSummaryText] = useState("");
-  let [selected, setSelected] = useState("short");
-  let [loading, setisLoading] = useState(false);
-  let [errorMsg, setErrorMsg] = useState("");
-  let [downloadError, setDownloadError] = useState("");
+  const [inputData, setInputData] = useState("");
+  const [summaryText, setSummaryText] = useState("");
+  const [selected, setSelected] = useState("short");
+  const [loading, setisLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [downloadError, setDownloadError] = useState("");
   const getInput = (e) => {
     if (inputData.length < 5000 || e.target.value.length < inputData.length) {
       setInputData(e.target.value);

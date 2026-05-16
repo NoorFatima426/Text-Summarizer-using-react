@@ -4,7 +4,7 @@ import { Copy } from "lucide-react";
 import { jsPDF } from "jspdf";
 import { ArrowDown } from "lucide-react";
 function Summarize({ summaryText, loading, downloadError, handleDownload }) {
-  let [msg, setMsg] = useState("");
+  const [msg, setMsg] = useState("");
   const copiedData = async () => {
   if (summaryText.length !== 0) {
     try {
